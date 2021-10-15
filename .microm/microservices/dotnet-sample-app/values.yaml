@@ -1,3 +1,5 @@
+# Microm Required Start
+
 name: dotnet-sample-app
 runner: dotnet-core
 path:
@@ -6,3 +8,13 @@ path:
   - dotnet-sample-app
 groups:
   - compiled-code-apps
+
+# Microm Required End
+
+# Microm Optional Start
+
+dockerfile:
+  - dockerfiles
+  - dotnet
+  - Dockerfile
+# Microm Optional End
