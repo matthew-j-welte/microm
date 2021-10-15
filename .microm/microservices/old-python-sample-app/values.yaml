@@ -1,0 +1,7 @@
+name: old-python-sample-app
+runner: python2
+path:
+  - src
+  - backend
+  - old-python-sample-app
+groups:

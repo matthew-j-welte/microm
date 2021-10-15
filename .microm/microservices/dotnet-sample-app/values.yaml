@@ -1,0 +1,8 @@
+name: dotnet-sample-app
+runner: dotnet-core
+path:
+  - src
+  - backend
+  - dotnet-sample-app
+groups:
+  - compiled-code-apps

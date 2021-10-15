@@ -1,0 +1,9 @@
+name: go-sample-app
+runner: go
+path:
+  - src
+  - backend
+  - go-sample-app
+groups:
+  - compiled-code-apps
+  - other-apps

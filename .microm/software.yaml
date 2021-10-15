@@ -1,0 +1,22 @@
+softwarelist:
+  - name: dotnet-core
+    software: dotnet
+    version: 5.0.0
+  - name: python
+    software: python
+    version: 3.9
+  - name: python2
+    software: python
+    version: 2.9
+  - name: go
+    software: go
+    version: 1.17.1
+  - name: minikube
+    software: minikube
+    version: 1.0.0
+  - name: helm
+    software: helm
+    version: 1.0.0
+  - name: kubectl
+    software: kubectl
+    version: 1.0.0

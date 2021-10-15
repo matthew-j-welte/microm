@@ -1,0 +1,9 @@
+groups:
+  - name: compiled-code-apps
+    microservices:
+      - dotnet-sample-app
+      - go-sample-app
+  - name: other-apps
+    microservices:
+      - go-sample-app
+      - python-sample-app
