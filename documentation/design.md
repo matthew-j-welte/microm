@@ -214,3 +214,54 @@ _For each one of the init steps we could probably have a is-<some-state> functio
   ```
 
 ## Architecture
+
+```
+microm/
+  .gitignore
+  README.md
+  setup.py
+  microm-cli/
+    __init__.py
+    run.py
+      run():
+        if not validator.is_project_initialized():
+          bootstrapper.initialize_project()
+        if validator.is_project_fully_validated():
+          runner.start_microm()
+        else:
+          # pce!
+
+    validator.py:
+      is_project_initialized():
+        # check if the .microm folder exists
+        # if it does check to ensure at least one app exists under microservices
+        # keep trying to init if a user decides they dont want to add apps yet
+    cli-runner.py:
+      start_microm():
+
+    microm-bootstrap.py:
+      initialize_project():
+        if not validator.is_git_base_directory():
+          # warn them to seriously reconsider where they init microm
+          # warn them if no git
+        # would you like me to add env var to bashrc? microm_myproject=/home/mwelte/github/microm
+        configwriter.autogen_service_configs()
+        configwriter.autogen_software_config()
+        configwriter.autogen_groups_config()
+        # what do you plan to deploy your apps to?
+        for mode_selected in []:
+          configwriter.create_starter_values(mode: mode_selected)
+        # point to readme
+        # say init complete
+
+    config-writer.py:
+      autogen_service_configs():
+        # bunch of fancy stuff with looping through src/ app/ etc. and looking for apps
+      autogen_software_config():
+        # based on app types in services/ folder, and the versions the user has for those cli's, gen a software list yaml
+      autogen_groups_config():
+        # auto create groups file (group for all apps of the same type and do an "all" which only has an empty exlusion list)
+    config-parser.py:
+    local-context.py
+    models.py (use named tuples or something else here: https://dev.to/izabelakowal/some-ideas-on-how-to-implement-dtos-in-python-be3)
+```
