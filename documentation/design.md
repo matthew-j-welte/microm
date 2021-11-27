@@ -34,10 +34,47 @@ _Project Software Install_
 
 _Record lists of commands and rerun them again in one command_
 
+Example:
+
+```
+> start-global-record # or start-user-record
+> mode local
+> local build all
+> unit-test all
+> int-test all
+> stop record LocalE2E
+
+Saved LocalE2E to global recordings!
+
+> run LocalE2E # Have this autocomplete to the ilst of recordings
+```
+
 _Code Templates_
 
-- Utilize user created templates that facilitate faster coding
-- IN ANY LANGUAGE
+Layout:
+<template-name>/
+
+- info.yaml
+- template.<file-extension>
+
+info.yaml:
+
+```yaml
+inputs:
+  - MODEL_INPUT_PATH
+outputs:
+  - ENTITY_NAME
+steps:
+  - path: "src/Domain/Interfaces/I{{ vars.ENTITY_NAME }}Repository.cs"
+    template: { { templates.dotnet-repository } }
+  - path: "src/Domain/Repositories/{{ vars.ENTITY_NAME }}Repository.cs"
+    template: { { templates.dotnet-repository-interface } }
+  - path: "src/Tests/Unit/App.Domain.Unit.Tests/{{ vars.ENTITY_NAME }}RepositoryTests.cs"
+    template: { { templates.dotnet-repository-unit-test } }
+```
+
+- Utilize user created templates that facilitate faster coding In any language
+- Should be able to do dynamic content inside of a file but also for the file paths, for example:
 
 _Bootstrap Extensions_
 
