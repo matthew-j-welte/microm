@@ -137,15 +137,17 @@ Sample yaml - layouts/organized-architecture-layout.yaml:
 
 ```yaml
 preprocessors:
-  - a2-dotnet-preprocessor
-  - a3-dotnet-preprocessor
-  - x1-javascript-preprocessor
-  - z1-go-preprocessor
+  apps:
+    - a2-dotnet-preprocessor
+    - a3-dotnet-preprocessor
+    - x1-javascript-preprocessor
+    - z1-go-preprocessor
 APIs:
-  - a2-dotnet-api
-  - a3-dotnet-api
-  - x1-node-api
-  - z1-go-api
+  apps:
+    - a2-dotnet-api
+    - a3-dotnet-api
+    - x1-node-api
+    - z1-go-api
 ```
 
 ---
@@ -215,6 +217,8 @@ _For each one of the init steps we could probably have a is-<some-state> functio
 
 ## Architecture
 
+**Top Level**
+
 ```
 microm/
   .gitignore
@@ -264,4 +268,23 @@ microm/
     config-parser.py:
     local-context.py
     models.py (use named tuples or something else here: https://dev.to/izabelakowal/some-ideas-on-how-to-implement-dtos-in-python-be3)
+    console-writer.py (handles all output statements, can have built in utilities to make repetitive print tasks easier)
 ```
+
+**Runners**
+
+```
+microm/
+  ...
+  runners/
+    dotnet-runner/
+      __init__.py
+      setup.py
+      ...
+    go-runner/
+      __init__.py
+      setup.py
+      ...
+```
+
+Each runner should be contained to a seperate module that way a user can upgrade microm whenever they want and not break all their runners
