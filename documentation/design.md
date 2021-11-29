@@ -16,7 +16,16 @@ Questions:
 - What is annoying about the link between local and CI/CD code?
 - ***
 
+second guessing making the "mode" the focal point.. because what if you want to run your newly modified app locally, on docker and on minikube.. you'd have to switch to all different modes and then if you have cleanup hooks you're screwed.. so maybe everything should just be based at the 'run' level. Meaning...
+
+we could have hooks for particular runs, built in ones for apps of a certain type (only locally I guess)
+
 ## Features
+
+### my-status
+
+- shows a user their project + user level status. meaning, if they're validated to use dotnet, go, python locally, can use docker, minikube etc.
+- this is a good alternate to the mode hooks originally planned.
 
 ### Local Build + Run
 
@@ -86,6 +95,14 @@ steps:
 
 - Runs after a mode is switched off of (or the app terminates)
 - Would be a good place to clean up any local resources if desired
+
+### Continually check for missing configuration either by a user or project
+
+- Can intermittently say things like "NOTE: There are 7 missing config values for _testdb_ `run-type` - Adding these can help save time"
+
+### Can have run-types with hooks
+
+- This way if we meed some dynamic vars or need to combine a number of inputs, we can do this here
 
 ### Parsing Extensions
 
@@ -242,8 +259,7 @@ microm/
         # keep trying to init if a user decides they dont want to add apps yet
     cli-runner.py:
       start_microm():
-
-    microm-bootstrap.py:
+    microm-init.py:
       initialize_project():
         if not validator.is_git_base_directory():
           # warn them to seriously reconsider where they init microm
@@ -288,3 +304,46 @@ microm/
 ```
 
 Each runner should be contained to a seperate module that way a user can upgrade microm whenever they want and not break all their runners
+
+**Need to figure out how to design the link between 'run modes' and different languages**
+
+- could we do just one runner for docker, helm-minikube, docker-compose
+  - how could they differ.. lets think
+  -
+- and then one for each local language?
+
+what are we trying to accomplish.....
+
+we want developers on a team to be able to run,test,automate tasks etc as easily and quickly as possible with some upfront effort on their part, however this effort will be clearly organized, modularized and most importantly extensible.
+
+so our job is to set up a clear and understandable framework for how users can create that automation.
+
+but we also dont just want to make them do all the work.. remember we also want to keep this config based as much as possible
+
+**run types**
+
+in the values.yaml file have:
+
+```yaml
+run-types:
+  localdb:
+    inputs:
+      ENV: development
+      DATABASE: some-app-dev
+  testdb:
+    inputs:
+      ENV: development
+      DATABASE: some-app-test
+```
+
+then maybe some overrides in `values.docker.yaml`:
+
+```yaml
+run-types:
+  localdb:
+    inputs:
+      ENV: docker-dev
+  testdb:
+    inputs:
+      ENV: docker-dev
+```
