@@ -14,16 +14,14 @@ def generic_do_cmd_func(func):
 
 def generic_command_completer_func(func):
     return f"""
-    @command_override_checker
-    def complete_{func}(self, text: str, line: str, start_index: int, end_index: int):
+    def complete_{func}(self, text, line, *args):
         pass
 """
 
 
 def generic_command_runner_func(func):
     return f"""
-    @command_override_checker
-    def do_{func}(self, line: str):
+    def do_{func}(self, line):
         pass
 """
 
