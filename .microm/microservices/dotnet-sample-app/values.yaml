@@ -8,7 +8,10 @@ path:
   - dotnet-sample-app
 groups:
   - compiled-code-apps
-
+inputs:
+  - slot_name
+env:
+  - aspnetcore_env
 # Microm Required End
 
 # Microm Optional Start

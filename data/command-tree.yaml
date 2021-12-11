@@ -1,0 +1,37 @@
+- status: []
+- done: []
+- help: []
+- local:
+    - build: []
+    - run: []
+    - test: []
+- docker:
+    - build: []
+    - run: []
+    - test: []
+- minikube:
+    - run: []
+    - test: []
+- recorder:
+    - start: []
+    - stop: []
+    - view: []
+    - publish: []
+    - delete: []
+    - un_publish: []
+    - edit: []
+    - combine: []
+    - visualize: []
+- templates:
+    - view: []
+    - use: []
+    - publish: []
+    - delete: []
+    - un_publish: []
+    - combine: []
+- hooks:
+    - view: []
+    - publish: []
+    - delete: []
+    - un_publish: []
+    - combine: []

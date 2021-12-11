@@ -347,3 +347,7 @@ run-types:
     inputs:
       ENV: docker-dev
 ```
+
+## Command Tree Arch
+
+The auto generated commands will all just accept \*args and \*\*kwargs and call another auto generated function name (the function def itself is manual though). Then from there write the function with well defined (type hints) params. May have to a function for auto completions too..

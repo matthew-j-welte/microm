@@ -1,0 +1,10 @@
+- status: []
+- local:
+    - build: []
+    - run: []
+- docker:
+    - build:
+        - verbose
+        - quick
+    - run: []
+    - test: []
